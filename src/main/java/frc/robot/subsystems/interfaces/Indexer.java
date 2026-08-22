@@ -72,8 +72,8 @@ public static void init() {
     mIndexFollowMotor.setControl(new Follower(mIndexMasterMotor.getDeviceID(), MotorAlignmentValue.Opposed).withUpdateFreqHz(20));
 
 }
-    public static void setFeed(double rpm) {
-        mFeedMotor.setControl(new VelocityTorqueCurrentFOC(rpm).withUpdateFreqHz(50));
+    public static void setFeed(double speed) {
+        mFeedMotor.setControl(new VelocityTorqueCurrentFOC(speed).withUpdateFreqHz(50));
     }
 
     public static void FeedIn() {

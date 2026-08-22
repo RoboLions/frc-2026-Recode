@@ -30,19 +30,24 @@ public class RobotMap {
     public static void init() {
         /* Subsystems "your ment to start every subsystem here"*/
         Swerve.init();
+        Indexer.init();
+        Intake.init();
+        Limelight.init();
+        Shooter.init();
+        
 
         /* statemachines */
         drivetrainmasterstatemachine.enable();
         scoringmasterstatemachine.enable();
 
-    // drivedrivetrainStateMachine.setCurrentState(DrivetrainStateMachine.teleopState);
-    // scoringStateMachine.setCurrentState(ScoringStateMachine.idleState);
+     drivetrainmasterstatemachine.setCurrentState(drivetrainmasterstatemachine.teleopState);
+     scoringmasterstatemachine.setCurrentState(scoringmasterstatemachine.idleState);
 
     scheduleAuto();
     }
     public static void subsystemPeriodics() {
     Swerve.periodic();
-    // Limelight.periodic();
+    Limelight.periodic();
 
     if (driverController.getXButtonPressed()) {
       Swerve.zeroGyro();
@@ -55,8 +60,8 @@ public class RobotMap {
     autosubsystem.scheduleAuto();
 
 
-// "For free?"
-//  - Jai Patel
+    // "For free?"
+    //  - Jai Patel
 
   }
 }

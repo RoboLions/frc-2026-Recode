@@ -1,11 +1,13 @@
 package frc.robot.subsystems.interfaces;
 
 import java.util.ArrayList;
-import java.util.logging.Logger;
+
+import org.littletonrobotics.junction.Logger;
 
 import com.ctre.phoenix6.configs.TalonFXConfiguration;
 import com.ctre.phoenix6.controls.Follower;
 import com.ctre.phoenix6.controls.VelocityTorqueCurrentFOC;
+import com.ctre.phoenix6.controls.VoltageOut;
 import com.ctre.phoenix6.hardware.TalonFX;
 import com.ctre.phoenix6.signals.InvertedValue;
 import com.ctre.phoenix6.signals.MotorAlignmentValue;
@@ -98,7 +100,7 @@ public class Shooter {
     public static void GetDistAndShoot(double Distance) {
         double velocity = GetDistVelocity(Distance);
         setShootSpeed(velocity);
-
+        
         Logger.recordOutput("Shooter / Shoot Speed (RPS)", velocity);
         Logger.recordOutput("Shooter / Distance", Distance);
     }
@@ -156,6 +158,11 @@ public class Shooter {
         mMasterFlywheelMotor.setControl(
             new VelocityTorqueCurrentFOC(setspeed)
                 .withUpdateFreqHz(100));
+    }
+    public static void idleShooter() {
+        mMasterFlywheelMotor.setControl(
+         new VoltageOut(0.0).withUpdateFreqHz(20)
+        );
     }
 
 

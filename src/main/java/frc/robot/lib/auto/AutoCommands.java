@@ -12,6 +12,7 @@ import edu.wpi.first.wpilibj2.command.Commands;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
 import frc.robot.Constants;
 import frc.robot.subsystems.interfaces.Intake;
+import frc.robot.subsystems.interfaces.Indexer;
 import frc.robot.subsystems.interfaces.Shooter;
 import frc.robot.subsystems.interfaces.swerve.Swerve;
 
@@ -32,17 +33,20 @@ public class AutoCommands {
     public static Command SwerveFaceHUB() {
         return Commands.run(() -> Swerve.facePose(Constants.FIELD.HUB_POSE, Rotation2d.fromDegrees(180)));
     }
+    public static Command SwerveFaceHUBSOTM() {
+        return Commands.run(() -> Swerve.TeleopDriveFacePose(Constants.FIELD.HUB_POSE, Rotation2d.fromDegrees(180), 1.5));
+    }
 
     public static Command PrintItem(String string) {
         return Commands.runOnce(() -> System.out.println(string));
     }
 
     public static Command idleShooter() {
-        return Commands.run(() ->  Shooter.idlerShooter());
+        return Commands.run(() ->  Shooter.idleShooter());
     }
 
     public static Command setShooter() {
-        return Commands.run(() ->  Shooter.interpolateAndShoot(Swerve.getPose().getTranslation().getDistance(Constants.FIELD.HUB_POSE)));
+        return Commands.run(() ->  Shooter.GetDistAndShoot(Swerve.getPose().getTranslation().getDistance(Constants.FIELD.HUB_POSE)));
     }
 
     public static Command shootSequenceWithRamp() {
@@ -93,6 +97,55 @@ public class AutoCommands {
                         .alongWith(AutoCommands.setShooter())
                         .withTimeout(0.5));
     }
+    public static Command shootSequenceWithRampSOTM() {
+        return Commands.sequence(AutoCommands.SwerveFaceHUBSOTM()
+                        .alongWith(AutoCommands.setShooter())
+                        .withTimeout(0.1),
+                
+                    AutoCommands.feedIn()
+                        .alongWith(AutoCommands.SwerveFaceHUBSOTM())
+                        .alongWith(AutoCommands.setShooter())
+                        .withTimeout(0.35),
+
+                    AutoCommands.SwerveFaceHUBSOTM()
+                        .alongWith(AutoCommands.setShooter())
+                        .alongWith(AutoCommands.intakeSlow())
+                        .alongWith(AutoCommands.intakeZeroPosition())
+                        .withTimeout(0.35),
+                        
+                    AutoCommands.intakeOutOnly()
+                        .alongWith(AutoCommands.setShooter())
+                        .withTimeout(0.5),
+                        
+                    AutoCommands.intakeZeroPosition()
+                        .alongWith(AutoCommands.setShooter())
+                        .withTimeout(0.5),
+                    
+                    AutoCommands.intakeOutOnly()
+                        .alongWith(AutoCommands.setShooter())
+                        .withTimeout(0.5),
+                        
+                    AutoCommands.intakeZeroPosition()
+                        .alongWith(AutoCommands.setShooter())
+                        .withTimeout(0.5),
+
+                    AutoCommands.intakeOutOnly()
+                        .alongWith(AutoCommands.setShooter())
+                        .withTimeout(0.5),
+                        
+                    AutoCommands.intakeZeroPosition()
+                        .alongWith(AutoCommands.setShooter())
+                        .withTimeout(0.5),
+
+                    AutoCommands.intakeOutOnly()
+                        .alongWith(AutoCommands.setShooter())
+                        .withTimeout(0.5),
+                        
+                    AutoCommands.intakeZeroPosition()
+                        .alongWith(AutoCommands.setShooter())
+                        .withTimeout(0.5));
+    }
+    
 
     public static Command shootSequenceNoRamp() {
         return Commands.sequence(AutoCommands.SwerveStop()
@@ -102,11 +155,11 @@ public class AutoCommands {
 
     public static Command intakeOutRollersIn() {
         return Commands.run(() -> Intake.intake())
-                       .alongWith(Commands.run(() -> Intake.intakeDown()));
+                       .alongWith(Commands.run(() -> Intake.intakeOut()));
     }
 
     public static Command intakeOutOnly() {
-        return Commands.run(() -> Intake.intakeDown());
+        return Commands.run(() -> Intake.intakeOut());
     }
 
     public static Command intakeStop() {
@@ -131,17 +184,17 @@ public class AutoCommands {
     }
 
     public static Command feedIn() {
-        return Commands.run(() -> Intake.FeedIn())
-                       .alongWith(Commands.run(() -> Intake.intake()))
-                       .alongWith(Commands.run(() -> Intake.IndexIn()));
-    }
+    return Commands.run(() -> Indexer.FeedIn())
+        .alongWith(Commands.run(() -> Indexer.IndexIn()))
+        .alongWith(Commands.run(() -> Intake.intake()));
+}
 
-    public static Command feedStop() {
-        return Commands.run(() -> Intake.stopFeed())
-                        .alongWith(Commands.run(() -> Intake.stopIndex())
-                        .alongWith(Commands.run(() -> Intake.stopIntake())
-                        .alongWith(Commands.run(() -> Intake.intakeUp()))));
-    }
+public static Command feedStop() {
+    return Commands.run(() -> Indexer.stopFeed())
+        .alongWith(Commands.run(() -> Indexer.stopIndex()))
+        .alongWith(Commands.run(() -> Intake.stopIntake()))
+        .alongWith(Commands.run(() -> Intake.intakeUp()));
+}
 
     public static Command intakeZeroPosition() {
         return Commands.run(() -> Intake.intakeUp());

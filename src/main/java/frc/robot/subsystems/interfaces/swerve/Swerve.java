@@ -1,19 +1,19 @@
 package frc.robot.subsystems.interfaces.swerve;
 
-import static edu.wpi.first.units.Units.*;
+import static edu.wpi.first.units.Units.MetersPerSecond;
+import static edu.wpi.first.units.Units.RadiansPerSecond;
+import static edu.wpi.first.units.Units.RotationsPerSecond;
 
 import org.littletonrobotics.junction.Logger;
 
-import com.ctre.phoenix6.swerve.SwerveDrivetrain.SwerveDriveState;
-import com.ctre.phoenix6.swerve.SwerveModule.DriveRequestType;
-
-import choreo.auto.AutoFactory;
-
 import com.ctre.phoenix6.hardware.CANcoder;
 import com.ctre.phoenix6.hardware.TalonFX;
+import com.ctre.phoenix6.swerve.SwerveDrivetrain.SwerveDriveState;
 import com.ctre.phoenix6.swerve.SwerveModule;
+import com.ctre.phoenix6.swerve.SwerveModule.DriveRequestType;
 import com.ctre.phoenix6.swerve.SwerveRequest;
 
+import choreo.auto.AutoFactory;
 import edu.wpi.first.math.Matrix;
 import edu.wpi.first.math.VecBuilder;
 import edu.wpi.first.math.Vector;
@@ -33,8 +33,8 @@ import edu.wpi.first.networktables.StructPublisher;
 import edu.wpi.first.units.Units;
 import edu.wpi.first.units.measure.Time;
 import edu.wpi.first.wpilibj.DriverStation;
-import edu.wpi.first.wpilibj.RobotController;
 import edu.wpi.first.wpilibj.DriverStation.Alliance;
+import edu.wpi.first.wpilibj.RobotController;
 import edu.wpi.first.wpilibj.smartdashboard.Field2d;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
@@ -49,6 +49,8 @@ public class Swerve {
         private static final double SLIP_ERROR_THRESHOLD = 7.5; //needs to be tuned against wall
         private static final double MaxSpeed = GeneratedConstants.kSpeedAt12Volts.in(MetersPerSecond); // kSpeedAt12Volts desired top speed
         private static final double MaxAngularRate = RotationsPerSecond.of(0.75).in(RadiansPerSecond); // 3/4 of a rotation per second max angular velocity
+        private static final double PushSpeed = GeneratedConstants.kSpeedAt12Volts.in(MetersPerSecond) * 0.70;
+        private static final double PushAngularRate =RotationsPerSecond.of(0.12).in(RadiansPerSecond);
     }
 
     private class SwerveObjects{
@@ -283,6 +285,21 @@ public class Swerve {
                 .withVelocityY(vy * SwerveConstants.MaxSpeed)
                 .withRotationalRate(omega * SwerveConstants.MaxAngularRate));
     }
+    public static void pushDrive() {
+    double vy = -RobotMap.driverController.getLeftX();
+    double vx = -RobotMap.driverController.getLeftY();
+
+    double turnInput = -RobotMap.driverController.getRightX();
+    double omega = Math.abs(turnInput) > 0.12
+        ? turnInput * SwerveConstants.PushAngularRate
+        : 0.0;
+
+    SwerveObjects.Swerve.setControl(
+        SwerveObjects.teleopDrive
+            .withVelocityX(vx * SwerveConstants.PushSpeed)
+            .withVelocityY(vy * SwerveConstants.PushSpeed)
+            .withRotationalRate(omega));
+}
 
     public static void teleopDrive(double percentSpeed) {
         double vy = -RobotMap.driverController.getLeftX() * percentSpeed;
@@ -353,6 +370,24 @@ public class Swerve {
         double omega = SwerveObjects.headingController.calculate(currPose.getRotation().getRadians());
 
         automaticDrive(0, new Rotation2d(0), omega);
+    }
+    public static void TeleopDriveFacePose(Translation2d targetPose, Rotation2d offset, double maxDriveSpeed) {
+        Pose2d currPose = getPose();
+        double dy = targetPose.getY() - currPose.getY();
+        double dx = targetPose.getX() - currPose.getX();
+        Rotation2d target = new Rotation2d(Math.atan2(dy, dx));
+
+        double vy = -RobotMap.driverController.getLeftX();
+        double vx = -RobotMap.driverController.getLeftY();
+
+        SwerveObjects.headingController.setSetpoint(target.getRadians() + offset.getRadians());
+        double omega = SwerveObjects.headingController.calculate(currPose.getRotation().getRadians());
+
+        SwerveObjects.Swerve.setControl(
+            SwerveObjects.teleopDrive
+            .withVelocityX(vx * maxDriveSpeed)
+            .withVelocityY(vy * maxDriveSpeed)
+                .withRotationalRate(omega * SwerveConstants.MaxAngularRate));
     }
 
     public static Command sysIdQuasistatic(SysIdRoutine.Direction direction) {

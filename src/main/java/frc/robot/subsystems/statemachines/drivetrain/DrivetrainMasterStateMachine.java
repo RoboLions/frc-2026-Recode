@@ -8,10 +8,19 @@ import frc.robot.lib.statemachine.StateMachine;
 
 /** Add your docs here. */
 public class DrivetrainMasterStateMachine extends StateMachine{
- 
+    /* EXAMPLE: public static StateName  statename = StateName(); */
+    public static TeleopState teleopState = new TeleopState();
+    public static ShootMoveState shootMoveState = new ShootMoveState();
+    public static AlignState alignstate = new AlignState();
+    public static PushState pushState = new PushState();
     
 
     public DrivetrainMasterStateMachine() {
         /* EXAMPLE: statename.build(); */
+        teleopState.build();
+        shootMoveState.build();
+        alignstate.build();
+        pushState.build();
+
     }
 }
