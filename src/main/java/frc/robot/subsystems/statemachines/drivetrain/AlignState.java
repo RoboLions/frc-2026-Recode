@@ -15,9 +15,10 @@ public class AlignState extends State {
         addTransition(
         new Transition(
             () -> {
-              return RobotMap.driverController.getRightBumperButtonPressed();
+              return RobotMap.driverController.getBButton();
             },
-                DrivetrainMasterStateMachine.teleopState));   
+                DrivetrainMasterStateMachine.teleopState)); 
+          
         addTransition(
         new Transition(
             () -> {

@@ -17,13 +17,13 @@ import frc.robot.Constants;
 
 public class Shooter {
     private static final TalonFX mMasterFlywheelMotor = 
-    new TalonFX(Constants.CAN_IDS.FLYWHEEL_MOTOR_MASTER, "CANext");
+    new TalonFX(Constants.CAN_IDS.FLYWHEEL_MOTOR_MASTER, "CANexternal");
     private static final TalonFX mFollowerFlywheelMotor1 = 
-    new TalonFX(Constants.CAN_IDS.FLYWHEEL_MOTOR_FOLLOWER_UPPER_RIGHT, "CANext");
+    new TalonFX(Constants.CAN_IDS.FLYWHEEL_MOTOR_FOLLOWER_UPPER_RIGHT, "CANexternal");
     private static final TalonFX mFollowerFlywheelMotor2 = 
-    new TalonFX(Constants.CAN_IDS.FLYWHEEL_MOTOR_FOLLOWER_LOWER_LEFT, "CANext");
+    new TalonFX(Constants.CAN_IDS.FLYWHEEL_MOTOR_FOLLOWER_LOWER_LEFT, "CANexternal");
     private static final TalonFX mFollowerFlywheelMotor3 = 
-    new TalonFX(Constants.CAN_IDS.FLYWHEEL_MOTOR_FOLLOWER_LOWER_RIGHT, "CANext");
+    new TalonFX(Constants.CAN_IDS.FLYWHEEL_MOTOR_FOLLOWER_LOWER_RIGHT, "CANexternal");
 
     private static ArrayList<ShotPoint> VELOCITY_LOOKUP_TABLE = new ArrayList<>();
     private static ArrayList<ShotPoint> PASSING_LOOKUP_TABLE = new ArrayList<>();

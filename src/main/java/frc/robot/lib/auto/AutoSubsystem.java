@@ -989,7 +989,6 @@ public class AutoSubsystem {
         return () -> {
             routine.active().onTrue(
                 Commands.sequence(
-                    Commands.waitSeconds(2.0),
                     AutoCommands.intakeZeroPosition()
                         .withTimeout(0.001),
 

@@ -18,7 +18,7 @@ public class PushState extends State {
         addTransition(
             new Transition(
                 () -> {
-                  return RobotMap.driverController.getLeftStickButton();
+                  return RobotMap.driverController.getStartButton();
                 },
                 DrivetrainMasterStateMachine.teleopState));  
         

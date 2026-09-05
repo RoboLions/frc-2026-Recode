@@ -13,12 +13,12 @@ import frc.robot.Constants;
 public class Indexer {
     
     private static final TalonFX mIndexMasterMotor = 
-    new TalonFX(Constants.CAN_IDS.INDEX_MOTOR_MASTER, "CANext");
+    new TalonFX(Constants.CAN_IDS.INDEX_MOTOR_MASTER, "CANexternal");
     private static final TalonFX mIndexFollowMotor = 
-    new TalonFX(Constants.CAN_IDS.INDEX_MOTOR_FOLLOWER, "CANext");
+    new TalonFX(Constants.CAN_IDS.INDEX_MOTOR_FOLLOWER, "CANexternal");
 
     private static final TalonFX mFeedMotor = 
-    new TalonFX(Constants.CAN_IDS.FEEDER_MOTOR, "CANext");
+    new TalonFX(Constants.CAN_IDS.FEEDER_MOTOR, "CANexternal");
 
 
 public static void init() {
