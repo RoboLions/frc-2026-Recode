@@ -56,7 +56,7 @@ public class CycleState extends State {
 
     if (Swerve.getPose().getX() >= 4.75 && Swerve.getPose().getX() <= 11.75) { // PASS LOGIC VS HUB
       
-      if (Swerve.getPose().getY() > 4) {
+      if (Swerve.getPose().getY() > 4) { 
        Shooter.GetDistAndPass(Swerve.getPose().getTranslation().getDistance(Constants.FIELD.PASS_TOP_FIELD.toTranslation2d()));
       } else {
        Shooter.GetDistAndPass(Swerve.getPose().getTranslation().getDistance(Constants.FIELD.PASS_BOTTOM_FIELD.toTranslation2d()));

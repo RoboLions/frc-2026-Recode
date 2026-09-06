@@ -1,16 +1,19 @@
 package frc.robot.subsystems.interfaces;
 import edu.wpi.first.math.geometry.Translation2d;
+import edu.wpi.first.units.measure.Velocity;
 import frc.robot.Constants;
 import frc.robot.subsystems.interfaces.swerve.Swerve;
 import edu.wpi.first.math.geometry.Rotation2d;
 import java.util.ArrayList;
 
 public class Sotm {
+
+    
     
     public static Translation2d getRobotFieldVelocity() {
     return new Translation2d(Swerve.getFieldSpeeds().vxMetersPerSecond, Swerve.getFieldSpeeds().vyMetersPerSecond);
     }   
-
+ 
     private static final ArrayList<TimeOfFlightPoint> TIME_OF_FLIGHT_LOOKUP_TABLE =
     new ArrayList<>();
 
@@ -64,6 +67,8 @@ public static double getTimeOfFlight(double currentDistance) {
     return leadTarget;
     }
     // leadTarget = target - robotFieldVelocity * timeOfFlight;
+
+    
 
     
 }

@@ -13,8 +13,9 @@ import com.ctre.phoenix6.signals.InvertedValue;
 import com.ctre.phoenix6.signals.MotorAlignmentValue;
 import com.ctre.phoenix6.signals.NeutralModeValue;
 
+import edu.wpi.first.math.kinematics.ChassisSpeeds;
 import frc.robot.Constants;
-
+import frc.robot.subsystems.interfaces.swerve.Swerve;
 public class Shooter {
     private static final TalonFX mMasterFlywheelMotor = 
     new TalonFX(Constants.CAN_IDS.FLYWHEEL_MOTOR_MASTER, "CANexternal");
@@ -96,9 +97,11 @@ public class Shooter {
     
 
     }
-
+    
     public static void GetDistAndShoot(double Distance) {
-        double velocity = GetDistVelocity(Distance);
+        
+        double velocity = GetDistVelocity(Distance) + (Swerve.chassisMPSX()) ;
+        ;
         setShootSpeed(velocity);
         
         Logger.recordOutput("Shooter / Shoot Speed (RPS)", velocity);

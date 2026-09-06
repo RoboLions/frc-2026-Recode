@@ -254,9 +254,7 @@ public class Swerve {
                                         .withRotationalRate(0));
     }
 
-    /**
-     * @return Absolute value positive Meters per second of robot-centric speed.
-     */
+    
     public static double chassisMPSX() {
          ChassisSpeeds ChassisSpeeds = SwerveObjects.Swerve.getState().Speeds;
             return ChassisSpeeds.vxMetersPerSecond;
