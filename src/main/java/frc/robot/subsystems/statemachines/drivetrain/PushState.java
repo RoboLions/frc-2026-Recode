@@ -15,13 +15,6 @@ public class PushState extends State {
                 },
                 DrivetrainMasterStateMachine.teleopState));  
 
-        addTransition(
-            new Transition(
-                () -> {
-                  return RobotMap.driverController.getStartButton();
-                },
-                DrivetrainMasterStateMachine.teleopState));  
-        
     }
 
     @Override

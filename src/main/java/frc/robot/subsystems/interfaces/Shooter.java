@@ -13,7 +13,6 @@ import com.ctre.phoenix6.signals.InvertedValue;
 import com.ctre.phoenix6.signals.MotorAlignmentValue;
 import com.ctre.phoenix6.signals.NeutralModeValue;
 
-import edu.wpi.first.math.kinematics.ChassisSpeeds;
 import frc.robot.Constants;
 import frc.robot.subsystems.interfaces.swerve.Swerve;
 public class Shooter {
@@ -109,7 +108,7 @@ public class Shooter {
     }
 
     public static void GetDistAndPass(double Distance) {
-        double velocity = GetPassingVelocity(Distance);
+        double velocity = GetPassingVelocity(Distance) + (Swerve.chassisMPSX());
         setShootSpeed(velocity);
 
         Logger.recordOutput("Shooter / PASS Speed (RPS)", velocity);
