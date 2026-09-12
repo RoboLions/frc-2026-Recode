@@ -34,15 +34,15 @@ public class ShootMoveState extends State {
     public void execute() {
         if (CycleState.isPass) {
             if (Swerve.getPose().getY() > 4.0) {
-                Swerve.TeleopDriveFacePose(Constants.FIELD.PASS_TOP_FIELD.toTranslation2d(), Rotation2d.fromDegrees(180.0), 1.5);
+                Swerve.TeleopDriveFacePose(Constants.FIELD.PASS_TOP_FIELD.toTranslation2d(), Rotation2d.fromDegrees(180.0), 1.25);
             } else {
-                Swerve.TeleopDriveFacePose(Constants.FIELD.PASS_BOTTOM_FIELD.toTranslation2d(), Rotation2d.fromDegrees(180.0), 1.5);
+                Swerve.TeleopDriveFacePose(Constants.FIELD.PASS_BOTTOM_FIELD.toTranslation2d(), Rotation2d.fromDegrees(180.0), 1.25);
             }
 
             return;
         }
 
-        Swerve.TeleopDriveFacePose(Sotm.getLeadTarget(Constants.FIELD.HUB_POSE),Rotation2d.fromDegrees(180.0), 1.5); 
+        Swerve.TeleopDriveFacePose(Sotm.getLeadTarget(Constants.FIELD.HUB_POSE),Rotation2d.fromDegrees(180.0), 1.25); 
     }   
     
     @Override

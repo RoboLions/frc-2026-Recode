@@ -99,7 +99,7 @@ public class Shooter {
     
     public static void GetDistAndShoot(double Distance) {
         
-        double velocity = GetDistVelocity(Distance) + (Swerve.chassisMPSX()) ;
+        double velocity = GetDistVelocity(Distance) - (Swerve.chassisMPSX()) ;
         ;
         setShootSpeed(velocity);
         
