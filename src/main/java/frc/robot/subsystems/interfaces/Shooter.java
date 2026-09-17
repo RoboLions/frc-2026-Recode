@@ -98,19 +98,24 @@ public class Shooter {
     }
     
     public static void GetDistAndShoot(double Distance) {
-        
-        double velocity = GetDistVelocity(Distance) - (Swerve.chassisMPSX()) ;
+        double velocity = GetDistVelocity(Distance);
+        double offset = Swerve.chassisMPSX();
+        double OffsetVelocity = GetDistVelocity(Distance) + (Swerve.chassisMPSX() ) ;
         ;
-        setShootSpeed(velocity);
+        setShootSpeed(OffsetVelocity);
         
+        Logger.recordOutput("Shooter / Shoot speed offset", offset);
         Logger.recordOutput("Shooter / Shoot Speed (RPS)", velocity);
         Logger.recordOutput("Shooter / Distance", Distance);
     }
 
     public static void GetDistAndPass(double Distance) {
-        double velocity = GetPassingVelocity(Distance) + (Swerve.chassisMPSX());
-        setShootSpeed(velocity);
+        double offset = Swerve.chassisMPSX();
+        double velocity = GetPassingVelocity(Distance);
+        double OffsetVelocity = GetPassingVelocity(Distance) + (Swerve.chassisMPSX());
+        setShootSpeed(OffsetVelocity);
 
+        Logger.recordOutput("Shooter / PASS speed offset", offset);
         Logger.recordOutput("Shooter / PASS Speed (RPS)", velocity);
         Logger.recordOutput("Shooter / DistanceToPass", Distance);
     }
