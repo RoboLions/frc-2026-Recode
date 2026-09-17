@@ -49,7 +49,7 @@ public class Swerve {
         private static final double SLIP_ERROR_THRESHOLD = 7.5; //needs to be tuned against wall
         private static final double MaxSpeed = GeneratedConstants.kSpeedAt12Volts.in(MetersPerSecond); // kSpeedAt12Volts desired top speed
         private static final double MaxAngularRate = RotationsPerSecond.of(0.75).in(RadiansPerSecond); // 3/4 of a rotation per second max angular velocity
-        private static final double PushSpeed = GeneratedConstants.kSpeedAt12Volts.in(MetersPerSecond) * 0.70;
+        private static final double PushSpeed = GeneratedConstants.kSpeedAt12Volts.in(MetersPerSecond) * 1.20;
         private static final double PushAngularRate =RotationsPerSecond.of(0.12).in(RadiansPerSecond);
     }
 

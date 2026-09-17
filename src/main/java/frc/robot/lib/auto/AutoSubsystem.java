@@ -14,8 +14,8 @@ public class AutoSubsystem {
     public AutoFactory autoFactory;
     private AutoChooser autoChooser;
 
-    private final double SHOOT_TIMEOUT_1 = 3.25; // time to empty the hopper
-    private final double SHOOT_TIMEOUT_2 = 2.75; // time to empty the hopper
+    private final double SHOOT_TIMEOUT_1 = 3.1; // time to empty the hopper
+    private final double SHOOT_TIMEOUT_2 = 2.6; // time to empty the hopper was 2.75
 
     public AutoSubsystem(AutoFactory createAutoFactory) {
         autoFactory = createAutoFactory;
