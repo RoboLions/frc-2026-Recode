@@ -8,6 +8,7 @@ import edu.wpi.first.wpilibj.DriverStation;
 import frc.robot.RobotMap;
 import frc.robot.lib.statemachine.State;
 import frc.robot.lib.statemachine.Transition;
+import frc.robot.subsystems.interfaces.Indexer;
 import frc.robot.subsystems.interfaces.Intake;
 import frc.robot.subsystems.interfaces.LEDS;
 import frc.robot.subsystems.interfaces.Shooter;
@@ -17,41 +18,6 @@ public class IdleState extends State {
 
   @Override
   public void build() {
-    addTransition(
-            new Transition(
-                () -> {
-                return RobotMap.driverController.getBButtonPressed();
-                },
-                ScoringMasterStateMachine.idleState));
-    addTransition(
-        new Transition(
-            () -> {
-              return RobotMap.driverController.getLeftTriggerAxis() > 0.25;
-            },
-              ScoringMasterStateMachine.cycleState));
-    addTransition(
-            new Transition( 
-                () -> {
-                return RobotMap.driverController.getRightBumper();
-                },
-                ScoringMasterStateMachine.intakeState));
-    addTransition(
-        new Transition(
-            () -> {
-            return RobotMap.driverController.getLeftBumper();
-            },
-            ScoringMasterStateMachine.outtakeState));
-    addTransition(
-        new Transition(
-            () -> {
-            return RobotMap.manipulatorController.getAButton();
-            },
-            ScoringMasterStateMachine.outtakeState));
-        new Transition(
-            () -> {
-            return RobotMap.manipulatorController.getYButton();
-            },
-            ScoringMasterStateMachine.intakeState);
   }
 
   @Override
@@ -69,18 +35,37 @@ public void init(State prevState) {
 
   @Override
   public void execute() {
-    if (RobotMap.driverController.getYButtonPressed() || RobotMap.manipulatorController.getLeftBumperButtonPressed()) {
+    if (RobotMap.driverController.getYButtonPressed() ) {
       Intake.intakeUp();
       Intake.intakeSlow();
     }
 
-    if (RobotMap.driverController.getYButtonReleased() || RobotMap.manipulatorController.getLeftBumperButtonReleased()) {
+    if (RobotMap.driverController.getYButtonReleased() ) {
       Intake.stopIntake();
     }
 
-    if (RobotMap.manipulatorController.getRightBumperButtonPressed()) {
+    if (RobotMap.driverController.getRightTriggerAxis() > .25) {
       Intake.intakeOut();
     }
+    if (RobotMap.driverController.getLeftTriggerAxis() > .25) {
+      Intake.intakeUp();
+    }
+    if (RobotMap.driverController.getAButton()) {
+      Shooter.setShootSpeed(20);
+    }
+    if (RobotMap.driverController.getBButton()) {
+      Indexer.IndexIn();;
+    }
+    if (RobotMap.driverController.getXButton()) {
+      Shooter.setShootSpeed(20);
+    }
+    if (RobotMap.driverController.getRightBumperButtonPressed()) {
+      Intake.intake();
+    }
+    if (RobotMap.driverController.getLeftBumperButtonPressed()) {
+      Intake.outtake();
+    }
+    
   }
 
   @Override

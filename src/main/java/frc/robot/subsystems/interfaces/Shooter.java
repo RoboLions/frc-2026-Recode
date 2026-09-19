@@ -154,7 +154,7 @@ public class Shooter {
 
       return PASSING_LOOKUP_TABLE.get(PASSING_LOOKUP_TABLE.size() - 1).velocity;
     }
-    private static void setShootSpeed(double setspeed) {
+    public static void setShootSpeed(double setspeed) {
         mMasterFlywheelMotor.setControl(
             new VelocityTorqueCurrentFOC(setspeed)
                 .withUpdateFreqHz(100));
