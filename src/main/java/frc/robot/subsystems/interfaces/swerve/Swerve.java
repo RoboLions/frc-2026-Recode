@@ -225,7 +225,7 @@ public class Swerve {
 	}
 
     public static void resetOdometry() {
-        if (DriverStation.getAlliance().get() == Alliance.Red) {
+        if (DriverStation.getAlliance().orElse(Alliance.Blue) == Alliance.Red) {
             resetPose(
                 new Pose2d(
                     getPose().getTranslation(), 
