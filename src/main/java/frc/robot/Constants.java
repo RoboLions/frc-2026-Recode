@@ -8,9 +8,31 @@ import edu.wpi.first.wpilibj.util.Color;
 public class Constants {
 
     public class FIELD {
-        public static final Translation2d  HUB_POSE = DriverStation.getAlliance().get() == DriverStation.Alliance.Blue ? new Translation2d(4.625, 4.034) : new Translation2d(11.915,4.034);
-        public static final Translation3d PASS_TOP_FIELD = DriverStation.getAlliance().get()  == DriverStation.Alliance.Blue ? new Translation3d(1.5, 6.25, 0) : new Translation3d(14.5, 6.25, 0);
-        public static final Translation3d PASS_BOTTOM_FIELD = DriverStation.getAlliance().get() == DriverStation.Alliance.Blue ? new Translation3d(1.5, 1.75, 0) : new Translation3d(14.5, 1.75, 0);
+        private static final Translation2d BLUE_HUB_POSE = new Translation2d(4.625, 4.034);
+        private static final Translation2d RED_HUB_POSE = new Translation2d(11.915, 4.034);
+
+        private static final Translation3d BLUE_PASS_TOP_FIELD = new Translation3d(1.5, 6.25, 0);
+        private static final Translation3d RED_PASS_TOP_FIELD = new Translation3d(14.5, 6.25, 0);
+
+        private static final Translation3d BLUE_PASS_BOTTOM_FIELD = new Translation3d(1.5, 1.75, 0);
+        private static final Translation3d RED_PASS_BOTTOM_FIELD = new Translation3d(14.5, 1.75, 0);
+
+        private static boolean isBlueAlliance() {
+            return DriverStation.getAlliance().orElse(DriverStation.Alliance.Blue)
+                == DriverStation.Alliance.Blue;
+        }
+
+        public static Translation2d hubPose() {
+            return isBlueAlliance() ? BLUE_HUB_POSE : RED_HUB_POSE;
+        }
+
+        public static Translation3d passTopField() {
+            return isBlueAlliance() ? BLUE_PASS_TOP_FIELD : RED_PASS_TOP_FIELD;
+        }
+
+        public static Translation3d passBottomField() {
+            return isBlueAlliance() ? BLUE_PASS_BOTTOM_FIELD : RED_PASS_BOTTOM_FIELD;
+        }
 
     }
 

@@ -31,10 +31,10 @@ public class AutoCommands {
     }
 
     public static Command SwerveFaceHUB() {
-        return Commands.run(() -> Swerve.facePose(Constants.FIELD.HUB_POSE, Rotation2d.fromDegrees(180)));
+        return Commands.run(() -> Swerve.facePose(Constants.FIELD.hubPose(), Rotation2d.fromDegrees(180)));
     }
     public static Command SwerveFaceHUBSOTM() {
-        return Commands.run(() -> Swerve.TeleopDriveFacePose(Constants.FIELD.HUB_POSE, Rotation2d.fromDegrees(180), 1.5));
+        return Commands.run(() -> Swerve.TeleopDriveFacePose(Constants.FIELD.hubPose(), Rotation2d.fromDegrees(180), 1.5));
     }
 
     public static Command PrintItem(String string) {
@@ -46,7 +46,7 @@ public class AutoCommands {
     }
 
     public static Command setShooter() {
-        return Commands.run(() ->  Shooter.GetDistAndShoot(Swerve.getPose().getTranslation().getDistance(Constants.FIELD.HUB_POSE)));
+        return Commands.run(() ->  Shooter.GetDistAndShoot(Swerve.getPose().getTranslation().getDistance(Constants.FIELD.hubPose())));
     }
 
     public static Command shootSequenceWithRamp() {

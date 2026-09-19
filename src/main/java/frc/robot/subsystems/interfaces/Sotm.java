@@ -63,7 +63,7 @@ public static double getTimeOfFlight(double currentDistance) {
    
 
     public static Translation2d getLeadTarget(Translation2d target){
-    Translation2d leadTarget = target.minus(getRobotFieldVelocity() .times(getTimeOfFlight(Swerve.getPose().getTranslation().getDistance(Constants.FIELD.HUB_POSE))));
+    Translation2d leadTarget = target.minus(getRobotFieldVelocity() .times(getTimeOfFlight(Swerve.getPose().getTranslation().getDistance(Constants.FIELD.hubPose()))));
     return leadTarget;
     }
     // leadTarget = target - robotFieldVelocity * timeOfFlight;
