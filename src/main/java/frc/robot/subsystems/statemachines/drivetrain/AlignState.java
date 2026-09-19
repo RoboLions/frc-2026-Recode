@@ -34,15 +34,15 @@ public class AlignState extends State {
     public void execute() {
         if (CycleState.isPass) {
             if (Swerve.getPose().getY() > 4.0) {
-                Swerve.facePose(Constants.FIELD.PASS_TOP_FIELD.toTranslation2d(), Rotation2d.fromDegrees(180.0));
+                Swerve.facePose(Constants.FIELD.passTopField().toTranslation2d(), Rotation2d.fromDegrees(180.0));
             } else {
-                Swerve.facePose(Constants.FIELD.PASS_BOTTOM_FIELD.toTranslation2d(), Rotation2d.fromDegrees(180.0));
+                Swerve.facePose(Constants.FIELD.passBottomField().toTranslation2d(), Rotation2d.fromDegrees(180.0));
             }
 
             return;
         }
 
-        Swerve.facePose(Constants.FIELD.HUB_POSE, Rotation2d.fromDegrees(180.0));
+        Swerve.facePose(Constants.FIELD.hubPose(), Rotation2d.fromDegrees(180.0));
     }   
     
     @Override
