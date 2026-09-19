@@ -6,6 +6,7 @@ import static edu.wpi.first.units.Units.RotationsPerSecond;
 
 import org.littletonrobotics.junction.Logger;
 
+import com.ctre.phoenix6.configs.CurrentLimitsConfigs;
 import com.ctre.phoenix6.hardware.CANcoder;
 import com.ctre.phoenix6.hardware.TalonFX;
 import com.ctre.phoenix6.swerve.SwerveDrivetrain.SwerveDriveState;
@@ -297,6 +298,28 @@ public class Swerve {
             .withVelocityX(vx * SwerveConstants.PushSpeed)
             .withVelocityY(vy * SwerveConstants.PushSpeed)
             .withRotationalRate(omega));
+}
+private static final CurrentLimitsConfigs normalDriveCurrentLimits = // our factory setings to we can toggle pushing 
+    new CurrentLimitsConfigs()
+        .withStatorCurrentLimit(Units.Amps.of(80))
+        .withStatorCurrentLimitEnable(true)
+        .withSupplyCurrentLimit(Units.Amps.of(34))
+        .withSupplyCurrentLimitEnable(true);
+
+private static final CurrentLimitsConfigs pushCurrentLimits =
+    new CurrentLimitsConfigs()
+        .withStatorCurrentLimit(Units.Amps.of(100))
+        .withStatorCurrentLimitEnable(true)
+        .withSupplyCurrentLimit(Units.Amps.of(25))
+        .withSupplyCurrentLimitEnable(true);
+
+public static void setPushCurrentLimits(boolean enabled) {
+    CurrentLimitsConfigs limits =
+        enabled ? pushCurrentLimits : normalDriveCurrentLimits;
+
+    for (SwerveModule<TalonFX, TalonFX, CANcoder> module : getModuleStates()) {
+        module.getDriveMotor().getConfigurator().apply(limits);
+    }
 }
 
     public static void teleopDrive(double percentSpeed) {

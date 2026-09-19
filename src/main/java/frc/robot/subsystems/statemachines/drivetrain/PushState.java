@@ -18,7 +18,10 @@ public class PushState extends State {
     }
 
     @Override
-    public void init(State prevState) {}  
+    public void init(State prevState) {
+        Swerve.setPushCurrentLimits(true);  
+
+    }  
 
     @Override
     public void execute() {
@@ -26,5 +29,8 @@ public class PushState extends State {
     }   
     
     @Override
-    public void exit(State nextState) {}
+    public void exit(State nextState) {
+        Swerve.setPushCurrentLimits(false);  
+
+    }
 }
