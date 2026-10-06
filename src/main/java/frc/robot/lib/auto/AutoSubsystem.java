@@ -37,7 +37,7 @@ public class AutoSubsystem {
             AutoCommands.intakeOutOnly()
             .withTimeout(0.0025));
         autoFactory.addEvent("SHOOT_START",
-            AutoCommands.shootSequenceWithRampSOTM()
+            AutoCommands.shootSequenceWithRamp()
             .withTimeout(SHOOT_TIMEOUT_1));
 
         autoFactory.registerAutoCommand("Left-Trench 2P", left2TrenchTripONLY());
