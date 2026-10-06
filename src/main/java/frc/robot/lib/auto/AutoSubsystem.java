@@ -49,7 +49,7 @@ public class AutoSubsystem {
         autoFactory.registerAutoCommand("Left-Bump 2P", leftBump2Trip());
         autoFactory.registerAutoCommand("Right-Bump 2P", rightBump2Trip());
 
-        autoFactory.registerAutoCommand("leftBump2Tripdelay", leftBump2Tripdelay());
+        autoFactory.registerAutoCommand("leftBump2delay", leftBump2Tripdelay());
 
         autoFactory.registerAutoCommand("HubPullBack", Hub_PullBack());
 
