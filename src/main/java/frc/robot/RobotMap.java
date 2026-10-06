@@ -4,8 +4,12 @@ import java.security.PublicKey;
 
 import org.littletonrobotics.junction.Logger;
 
+import edu.wpi.first.math.controller.PIDController;
+import edu.wpi.first.units.Units;
 import edu.wpi.first.wpilibj.PowerDistribution;
 import edu.wpi.first.wpilibj.XboxController;
+import frc.robot.lib.Pursuiter.PursuitAutoFactory;
+import frc.robot.lib.Pursuiter.PursuitProfile;
 import frc.robot.lib.auto.AutoSubsystem;
 import frc.robot.subsystems.interfaces.Indexer;
 import frc.robot.subsystems.interfaces.Intake;
@@ -17,8 +21,20 @@ import frc.robot.subsystems.statemachines.scoring.ScoringMasterStateMachine;
 
 public class RobotMap {
     private static final PowerDistribution PDP = new PowerDistribution();
-    private static final AutoSubsystem autosubsystem = new AutoSubsystem(Swerve.createAutoFactory());
+    private static final AutoSubsystem autosubsystem = new AutoSubsystem(Swerve.createPursuitAutoFactory(PursuitProfile()));
+    private static PursuitProfile profile =
+      new PursuitProfile(
+          Units.Meters.of(0.1),
+          Units.Degrees.of(5.0),
+          Units.Meters.of(0.3),
+          new PIDController(1.0, 0, 0),
+          new PIDController(3.0, 0, 0),
+          new PIDController(7.5, 0, 0),
+          true);
+  private static PursuitAutoFactory autoFactory =
+      new PursuitAutoFactory(Swerve::getPose, Swerve::setFieldChassisSpeeds, profile);
 
+      
     /*State machines instances */
     public static final DrivetrainMasterStateMachine drivetrainmasterstatemachine = new DrivetrainMasterStateMachine();
     public static final ScoringMasterStateMachine scoringmasterstatemachine = new ScoringMasterStateMachine();

@@ -1,4 +1,4 @@
-package frc.lib.Pursuiter.util;
+package frc.robot.lib.Pursuiter.util;
 
 import edu.wpi.first.units.measure.AngularVelocity;
 

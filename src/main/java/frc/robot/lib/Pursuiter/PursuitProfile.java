@@ -1,4 +1,4 @@
-package frc.lib.Pursuiter;
+package frc.robot.lib.Pursuiter;
 
 import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.units.measure.Angle;

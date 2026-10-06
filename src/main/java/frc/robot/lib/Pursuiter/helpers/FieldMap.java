@@ -1,4 +1,4 @@
-package frc.lib.Pursuiter.helpers;
+package frc.robot.lib.Pursuiter.helpers;
 
 import edu.wpi.first.math.geometry.Translation2d;
 

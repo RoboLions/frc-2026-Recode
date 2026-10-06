@@ -1,7 +1,7 @@
-package frc.lib.Pursuiter.helpers;
+package frc.robot.lib.Pursuiter.helpers;
 
 import edu.wpi.first.math.geometry.Pose2d;
-import frc.lib.Pursuiter.util.PathPoint;
+import frc.robot.lib.Pursuiter.util.PathPoint;
 
 import java.util.List;
 

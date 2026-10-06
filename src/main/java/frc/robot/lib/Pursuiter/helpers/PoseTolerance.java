@@ -1,4 +1,4 @@
-package frc.lib.Pursuiter.helpers;
+package frc.robot.lib.Pursuiter.helpers;
 
 import static edu.wpi.first.units.Units.Degrees;
 import static edu.wpi.first.units.Units.Meters;
