@@ -718,111 +718,112 @@ public class AutoSubsystem {
             R3);
     }
 
-    private Command left2TrenchbumpSOTM() {
-        autoFactory.addEvent("INTAKE",
-            AutoCommands.intakeOutRollersIn()
-            .withTimeout(0.001));
-        autoFactory.addEvent("INTAKE_STOP",
-            AutoCommands.intakeStop()
-            .withTimeout(0.001));
-        autoFactory.addEvent("REV_SHOT",
-            AutoCommands.setShooter()
-            .withTimeout(0.001));
+    // private Command left2TrenchbumpSOTM() {
+    //     autoFactory.addEvent("INTAKE",
+    //         AutoCommands.intakeOutRollersIn()
+    //         .withTimeout(0.001));
+    //     autoFactory.addEvent("INTAKE_STOP",
+    //         AutoCommands.intakeStop()
+    //         .withTimeout(0.001));
+    //     autoFactory.addEvent("REV_SHOT",
+    //         AutoCommands.setShooter()
+    //         .withTimeout(0.001));
 
-        // SHOOT_START has a different timeout on each path, so set it right before each one.
-        autoFactory.addEvent("SHOOT_START",
-            AutoCommands.shootSequenceWithRampSOTM()
-            .withTimeout(SHOOT_TIMEOUT_1));
-        Command L1 = autoFactory.followPath("L1_TBSM.traj");
+    //     // SHOOT_START has a different timeout on each path, so set it right before each one.
+    //     autoFactory.addEvent("SHOOT_START",
+    //         AutoCommands.shootSequenceWithRampSOTM()
+    //         .withTimeout(SHOOT_TIMEOUT_1));
+    //     Command L1 = autoFactory.followPath("L1_TBSM.traj");
 
-        autoFactory.addEvent("SHOOT_START",
-            AutoCommands.shootSequenceWithRampSOTM()
-            .withTimeout(SHOOT_TIMEOUT_2));
-        Command L2 = autoFactory.followPath("L2_TBSM.traj");
+    //     autoFactory.addEvent("SHOOT_START",
+    //         AutoCommands.shootSequenceWithRampSOTM()
+    //         .withTimeout(SHOOT_TIMEOUT_2));
+    //     Command L2 = autoFactory.followPath("L2_TBSM.traj");
 
-        Command L3 = autoFactory.followPath("L3_TBSM.traj");
+    //     Command L3 = autoFactory.followPath("L3_TBSM.traj");
 
-        return Commands.sequence(
-            AutoCommands.intakeZeroPosition()
-                .withTimeout(0.001),
+    //     return Commands.sequence(
+    //         AutoCommands.intakeZeroPosition()
+    //             .withTimeout(0.001),
 
-            AutoCommands.feedStop()
-                .withTimeout(0.001),
+    //         AutoCommands.feedStop()
+    //             .withTimeout(0.001),
 
-            AutoCommands.idleShooter()
-                .withTimeout(0.0025),
+    //         AutoCommands.idleShooter()
+    //             .withTimeout(0.0025),
 
-            L1,
+    //         L1,
 
-            AutoCommands.feedStop()
-                .withTimeout(0.001),
+    //         AutoCommands.feedStop()
+    //             .withTimeout(0.001),
 
-            AutoCommands.idleShooter()
-                .withTimeout(0.0025),
+    //         AutoCommands.idleShooter()
+    //             .withTimeout(0.0025),
 
-            L2,
+    //         L2,
 
-            AutoCommands.feedStop()
-                .withTimeout(0.001),
+    //         AutoCommands.feedStop()
+    //             .withTimeout(0.001),
 
-            AutoCommands.idleShooter()
-                .withTimeout(0.0025),
+    //         AutoCommands.idleShooter()
+    //             .withTimeout(0.0025),
 
-            L3);
-    }
+    //         L3);
+    // }
 
-    private Command right2TrenchbumpSOTM() {
-        autoFactory.addEvent("INTAKE",
-            AutoCommands.intakeOutRollersIn()
-            .withTimeout(0.001));
-        autoFactory.addEvent("INTAKE_STOP",
-            AutoCommands.intakeStop()
-            .withTimeout(0.001));
-        autoFactory.addEvent("REV_SHOT",
-            AutoCommands.setShooter()
-            .withTimeout(0.001));
+//     private Command right2TrenchbumpSOTM() {
+//         autoFactory.addEvent("INTAKE",
+//             AutoCommands.intakeOutRollersIn()
+//             .withTimeout(0.001));
+//         autoFactory.addEvent("INTAKE_STOP",
+//             AutoCommands.intakeStop()
+//             .withTimeout(0.001));
+//         autoFactory.addEvent("REV_SHOT",
+//             AutoCommands.setShooter()
+//             .withTimeout(0.001));
 
-        // SHOOT_START has a different timeout on each path, so set it right before each one.
-        autoFactory.addEvent("SHOOT_START",
-            AutoCommands.shootSequenceWithRampSOTM()
-            .withTimeout(SHOOT_TIMEOUT_1));
-        Command R1 = autoFactory.followPath("L1_TBSM.traj", false, true,  CENTER_FIELD);
+//         // SHOOT_START has a different timeout on each path, so set it right before each one.
+//         autoFactory.addEvent("SHOOT_START",
+//             AutoCommands.shootSequenceWithRampSOTM()
+//             .withTimeout(SHOOT_TIMEOUT_1));
+//         Command R1 = autoFactory.followPath("L1_TBSM.traj", false, true,  CENTER_FIELD);
 
-        autoFactory.addEvent("SHOOT_START",
-            AutoCommands.shootSequenceWithRampSOTM()
-            .withTimeout(SHOOT_TIMEOUT_2));
-        Command R2 = autoFactory.followPath("L2_TBSM.traj", false, true,  CENTER_FIELD);
+//         autoFactory.addEvent("SHOOT_START",
+//             AutoCommands.shootSequenceWithRampSOTM()
+//             .withTimeout(SHOOT_TIMEOUT_2));
+//         Command R2 = autoFactory.followPath("L2_TBSM.traj", false, true,  CENTER_FIELD);
 
-        Command R3 = autoFactory.followPath("L3_TBSM.traj", false, true, CENTER_FIELD);
+//         Command R3 = autoFactory.followPath("L3_TBSM.traj", false, true, CENTER_FIELD);
 
-        return Commands.sequence(
-            Commands.waitSeconds(2.0),
+//         return Commands.sequence(
+//             Commands.waitSeconds(2.0),
 
-            AutoCommands.intakeZeroPosition()
-                .withTimeout(0.001),
+//             AutoCommands.intakeZeroPosition()
+//                 .withTimeout(0.001),
 
-            AutoCommands.feedStop()
-                .withTimeout(0.001),
+//             AutoCommands.feedStop()
+//                 .withTimeout(0.001),
 
-            AutoCommands.idleShooter()
-                .withTimeout(0.0025),
+//             AutoCommands.idleShooter()
+//                 .withTimeout(0.0025),
 
-            R1,
+//             R1,
 
-            AutoCommands.feedStop()
-                .withTimeout(0.001),
+//             AutoCommands.feedStop()
+//                 .withTimeout(0.001),
 
-            AutoCommands.idleShooter()
-                .withTimeout(0.0025),
+//             AutoCommands.idleShooter()
+//                 .withTimeout(0.0025),
 
-            R2,
+//             R2,
 
-            AutoCommands.feedStop()
-                .withTimeout(0.001),
+//             AutoCommands.feedStop()
+//                 .withTimeout(0.001),
 
-            AutoCommands.idleShooter()
-                .withTimeout(0.0025),
+//             AutoCommands.idleShooter()
+//                 .withTimeout(0.0025),
 
-            R3);
-    }
+//             R3);
+//     }
+// }
 }
