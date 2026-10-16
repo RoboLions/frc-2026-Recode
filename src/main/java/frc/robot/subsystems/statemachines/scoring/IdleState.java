@@ -52,6 +52,11 @@ public class IdleState extends State {
             return RobotMap.manipulatorController.getYButton();
             },
             ScoringMasterStateMachine.intakeState);
+   
+    addTransition(
+    new Transition(
+        () -> RobotMap.driverController.getPOV() == 0,
+        ScoringMasterStateMachine.setshotState));
   }
 
   @Override

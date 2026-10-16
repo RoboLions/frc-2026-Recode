@@ -15,6 +15,7 @@ public class ScoringMasterStateMachine extends StateMachine{
     public static CycleState cycleState = new CycleState();
     public static IntakeState intakeState = new IntakeState();
     public static OuttakeState outtakeState = new OuttakeState();
+    public static SetshotState setshotState = new SetshotState();
 
     public ScoringMasterStateMachine() {
         /* EXAMPLE: statename.build(); */
@@ -22,5 +23,6 @@ public class ScoringMasterStateMachine extends StateMachine{
         cycleState.build();
         intakeState.build();
         outtakeState.build();
+        setshotState.build();
     }
 }

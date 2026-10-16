@@ -23,13 +23,14 @@ public class TeleopState extends State {
                 },
                 DrivetrainMasterStateMachine.alignstate));  
     
-        addTransition(
-    new Transition(
-        () -> RobotMap.driverController.getPOV() == 0
-            && RobotMap.scoringmasterstatemachine
-                .getCurrentState()
-                .equals(ScoringMasterStateMachine.idleState),
-        DrivetrainMasterStateMachine.pushState)); }
+        // addTransition(
+    // new Transition(
+    //     () -> RobotMap.driverController.getPOV() == 0
+    //         && RobotMap.scoringmasterstatemachine
+    //             .getCurrentState()
+    //             .equals(ScoringMasterStateMachine.idleState),
+    //     DrivetrainMasterStateMachine.pushState));
+     }
         
 
     @Override
