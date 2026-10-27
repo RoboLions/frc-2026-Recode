@@ -118,6 +118,10 @@ public class Intake {
   public static void intakeMid() {
     setRack(MIDDLE_POS);
   }
+
+  public static void intakeShuffle() {
+    
+  }
   
   public static double getRackPos() {
     return mRackMotor.getPosition().getValueAsDouble();

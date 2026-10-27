@@ -24,12 +24,6 @@ public class IdleState extends State {
                 },
                 ScoringMasterStateMachine.idleState));
     addTransition(
-        new Transition(
-            () -> {
-              return RobotMap.driverController.getLeftTriggerAxis() > 0.25;
-            },
-              ScoringMasterStateMachine.cycleState));
-    addTransition(
             new Transition( 
                 () -> {
                 return RobotMap.driverController.getRightBumper();
@@ -43,20 +37,10 @@ public class IdleState extends State {
             ScoringMasterStateMachine.outtakeState));
     addTransition(
         new Transition(
-            () -> {
-            return RobotMap.manipulatorController.getAButton();
-            },
-            ScoringMasterStateMachine.outtakeState));
-        new Transition(
-            () -> {
-            return RobotMap.manipulatorController.getYButton();
-            },
-            ScoringMasterStateMachine.intakeState);
-   
-    addTransition(
-    new Transition(
-        () -> RobotMap.driverController.getPOV() == 0,
-        ScoringMasterStateMachine.setshotState));
+        () -> {
+          return RobotMap.driverController.getRightTriggerAxis() > .25;
+        },
+        ScoringMasterStateMachine.shootState));
   }
 
   @Override

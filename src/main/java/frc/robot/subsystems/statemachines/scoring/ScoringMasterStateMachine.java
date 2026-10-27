@@ -12,17 +12,15 @@ import frc.robot.subsystems.statemachines.drivetrain.TeleopState;
 public class ScoringMasterStateMachine extends StateMachine{
     /* EXAMPLE: public static StateName  statename = StateName(); */
     public static IdleState idleState = new IdleState();
-    public static CycleState cycleState = new CycleState();
     public static IntakeState intakeState = new IntakeState();
     public static OuttakeState outtakeState = new OuttakeState();
-    public static SetshotState setshotState = new SetshotState();
+    public static ShootState shootState = new ShootState();
 
     public ScoringMasterStateMachine() {
         /* EXAMPLE: statename.build(); */
         idleState.build();
-        cycleState.build();
         intakeState.build();
         outtakeState.build();
-        setshotState.build();
+        shootState.build();
     }
 }
