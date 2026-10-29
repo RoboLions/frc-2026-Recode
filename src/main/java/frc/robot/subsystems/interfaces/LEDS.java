@@ -60,6 +60,13 @@ public class LEDS {
             .withFrameRate(20));
     }
 
+    public static void setFlashOrange() {
+        mRGB_Candle.setControl(new StrobeAnimation(0, MAX_LED_INDEX)
+            .withColor(new RGBWColor(255, 165, 0))
+            .withFrameRate(20));
+    }
+
+
     public static void setFlashRed() {
         mRGB_Candle.setControl(new StrobeAnimation(0, MAX_LED_INDEX)
             .withColor(new RGBWColor(255, 0, 0))

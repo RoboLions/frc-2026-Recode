@@ -9,6 +9,8 @@ import com.ctre.phoenix6.hardware.TalonFX;
 import com.ctre.phoenix6.signals.InvertedValue;
 import com.ctre.phoenix6.signals.MotorAlignmentValue;
 import com.ctre.phoenix6.signals.NeutralModeValue;
+
+import edu.wpi.first.wpilibj.Timer;
 import frc.robot.Constants;
 
 
@@ -120,7 +122,13 @@ public class Intake {
   }
 
   public static void intakeShuffle() {
-    
+    double timeForIntake = Timer.getFPGATimestamp();
+
+    if(timeForIntake % 0.7 <0.35){
+      intakeMid();
+    }else{
+      intakeOut();
+    }
   }
   
   public static double getRackPos() {

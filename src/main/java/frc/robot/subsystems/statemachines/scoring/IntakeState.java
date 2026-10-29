@@ -28,12 +28,7 @@ public class IntakeState extends State {
               return RobotMap.driverController.getBButton();
             },
             ScoringMasterStateMachine.idleState));
-    addTransition(
-        new Transition(
-            () -> {
-              return RobotMap.driverController.getLeftTriggerAxis() > 0.25;
-            },
-            ScoringMasterStateMachine.cycleState));
+    
   }
   @Override
   public void init(State prevState) {

@@ -36,18 +36,15 @@ public class ShootState extends State {
   @Override
   public void init(State prevState) {
     Intake.intakeOut();
-    LEDS.setFlashRed();
+    LEDS.setFlashOrange();
   }
 
   @Override
-  public void execute() {{
+  public void execute() {
       Indexer.FeedIn();
       Indexer.IndexIn();
-      LEDS.setFlashGreen();
-    }
-    Shooter.GetDistAndShoot(2.921);
-
-    Intake.intakeShuffle(); 
+      Shooter.GetDistAndShoot(2.921);
+      Intake.intakeShuffle(); 
 
   }
 
@@ -55,7 +52,9 @@ public class ShootState extends State {
   @Override
   public void exit(State nextState) {
     isPass = false;
-        LEDS.turnOff();
+    LEDS.turnOff();
+    Intake.intakeOut();
+  
 
   }
 }
